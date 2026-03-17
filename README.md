@@ -4,7 +4,7 @@ Open multiple chrome windows, websites and pisition, minimize or maximize them
 ## Installation
 
 ```bash
-git clone
+git clone https://github.com/tempusArch/OpenAndPositionChromeWindowWebsite.git
 ```
 
 ## Usage
