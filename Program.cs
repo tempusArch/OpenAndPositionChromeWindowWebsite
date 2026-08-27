@@ -4,11 +4,14 @@ using System.Runtime.InteropServices;
 class Program {
     [DllImport("user32.dll")]
     static extern bool SetForegroundWindow(IntPtr hWnd);
+
     [DllImport("user32.dll", SetLastError = true)]
     static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
     [DllImport("user32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool SetWindowPlacement(IntPtr hWnd, [In] ref WINDOWPLACEMENT lpwndpl);
+
 
     [StructLayout(LayoutKind.Sequential)]
     public struct WINDOWPLACEMENT {
@@ -35,12 +38,27 @@ class Program {
     }
 
     static async Task Main() {          //One call opens one window
-        Task i = openAndPositionChromeWindow(new[] {"https://open.spotify.com/"}, 1, 
-                        "Spotify - Web Player: Music for everyone - Google Chrome", 1490, 320, 2500, 1170);  //left, top, right, bottom, Unit: pixel
-        Task j = openAndPositionChromeWindow(new[] {"https://www.google.com/", "https://x.com/home"}, 1, 
-                        "Google - Google Chrome", -10, 0, 1080, 1423); 
-        Task k = openAndPositionChromeWindow(new[] {"https://www.pixiv.net/en/", "https://discord.com/channels/@me", "https://www.youtube.com/"}, 3, 
-                        "Online community for artists [pixiv] - Google Chrome", 0, 0, 830, 1423); 
+        Task i = openAndPositionChromeWindow(
+            ["https://open.spotify.com/"], 
+            1, 
+            "Spotify - Web Player: Music for everyone - Google Chrome", 
+            1490, 320, 2500, 1170        //left, top, right, bottom, Unit: pixel
+        );  
+        
+        Task j = openAndPositionChromeWindow(
+            ["https://www.google.com/", "https://x.com/home"], 
+            1, 
+            "Google - Google Chrome", 
+            -10, 0, 1080, 1423
+        ); 
+
+        Task k = openAndPositionChromeWindow(
+            ["https://www.pixiv.net/en/", "https://discord.com/channels/@me", "https://www.youtube.com/"], 
+            3, 
+            "Online community for artists [pixiv] - Google Chrome", 
+            0, 0, 830, 1423
+        ); 
+                        
         await Task.WhenAll(i, j, k);
     }   
 
