@@ -38,21 +38,21 @@ class Program {
     }
 
     static async Task Main() {          //One call opens one window
-        Task i = openAndPositionChromeWindow(
+        Task i = OpenAndPositionChromeWindow(
             ["https://open.spotify.com/"], 
             1, 
             "Spotify - Web Player: Music for everyone - Google Chrome", 
             1490, 320, 2500, 1170        //left, top, right, bottom, Unit: pixel
         );  
         
-        Task j = openAndPositionChromeWindow(
+        Task j = OpenAndPositionChromeWindow(
             ["https://www.google.com/", "https://x.com/home"], 
             1, 
             "Google - Google Chrome", 
             -10, 0, 1080, 1423
         ); 
 
-        Task k = openAndPositionChromeWindow(
+        Task k = OpenAndPositionChromeWindow(
             ["https://www.pixiv.net/en/", "https://discord.com/channels/@me", "https://www.youtube.com/"], 
             3, 
             "Online community for artists [pixiv] - Google Chrome", 
@@ -62,7 +62,7 @@ class Program {
         await Task.WhenAll(i, j, k);
     }   
 
-    static async Task openAndPositionChromeWindow(string[] urls, int dekasa, string windowName, int hidari, int ue, int migi, int shita) {
+    static async Task OpenAndPositionChromeWindow(string[] urls, int dekasa, string windowName, int hidari, int ue, int migi, int shita) {
         string chromePath = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
         string arguments = "--new-window " + string.Join(" ", urls);
 
