@@ -1,4 +1,4 @@
-# OpenAndPositionChromeWindows
+# Open_And_Position_Chrome_Windows
 Open multiple chrome windows, websites and position, minimize or maximize them
 
 ## Installation
